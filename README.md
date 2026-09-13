@@ -223,17 +223,53 @@ curl -s -X POST http://localhost:8000/detect \
 
 ```json
 {
-  "request_id": "3f9c1d2a7b44",
-  "image": {"width": 1536, "height": 2048},
+  "request_id": "25d6c213a3cd",
+  "image": {
+    "width": 1024,
+    "height": 768
+  },
   "confidence_threshold": 0.25,
-  "count": 3,
-  "counts_by_class": {"shark": 2, "stingray": 1},
+  "count": 51,
+  "counts_by_class": {
+    "jellyfish": 49,
+    "fish": 2
+  },
   "detections": [
-    {"label": "shark", "confidence": 0.91, "box_xyxy": [143.0, 358.2, 891.5, 701.7]},
-    {"label": "stingray", "confidence": 0.84, "box_xyxy": [402.0, 1210.4, 1102.9, 1588.0]},
-    {"label": "shark", "confidence": 0.77, "box_xyxy": [980.3, 220.0, 1500.1, 512.6]}
+    {
+      "label": "jellyfish",
+      "confidence": 0.8886,
+      "box_xyxy": [
+        831.4,
+        463.0,
+        922.1,
+        567.8
+      ]
+    },
+    {
+      "label": "jellyfish",
+      "confidence": 0.8839,
+      "box_xyxy": [
+        747.4,
+        162.6,
+        852.7,
+        251.1
+      ]
+    },
+    {
+      "label": "jellyfish",
+      "confidence": 0.8774,
+      "box_xyxy": [
+        307.8,
+        348.7,
+        396.4,
+        420.7
+      ]
+    },
+    {
+      "...": "48 more"
+    }
   ],
-  "inference_ms": 612.4
+  "inference_ms": 3908.0
 }
 ```
 
@@ -241,41 +277,113 @@ curl -s -X POST http://localhost:8000/detect \
 
 ```bash
 curl -s -X POST http://localhost:8000/ask \
-  -F "file=@samples/tank_01.jpg" -F "question=How many sharks are in this tank?"
+  -F "file=@samples/tank_01.jpg" -F "question=What is the most common animal here?"
 ```
 
 ```json
 {
-  "request_id": "9a71e0c4d2f0",
-  "question": "How many sharks are in this tank?",
-  "answer": "I count 2 sharks in this image.",
+  "request_id": "b65410fd64e4",
+  "question": "What is the most common animal here?",
+  "answer": "The most common animal is the jellyfish: 48 of the 50 animals detected, ahead of 2 fish.",
   "sufficient_information": true,
-  "routing": {"needs_detection": true, "question_kind": "count", "targets": ["shark"],
-              "rationale": "the question asks for a count of sharks in the image", "decided_by": "rules"},
+  "routing": {
+    "needs_detection": true,
+    "question_kind": "ranking",
+    "targets": [],
+    "rationale": "the question asks which animal is the most common, which needs reliable counts for every class present",
+    "decided_by": "rules"
+  },
   "detector_called": true,
   "guardrail_reasons": [],
   "answer_source": "template",
-  "evidence": {"animals_detected": 3, "kinds_detected": 2, "counts": {"shark": 2, "stingray": 1},
-               "ranking": [{"label": "shark", "count": 2}, {"label": "stingray", "count": 1}],
-               "duplicates_suppressed": 0, "identity_conflicts": [], "crowding": 0.0,
-               "classes": {"shark": {"count": 2, "confident": 2, "tentative": 0, "max_confidence": 0.91,
-                                     "crowding": 0.0, "conflicts": 0, "conflicts_with": []}, "...": "..."},
-               "...": "..."},
-  "inference_ms": 598.0
+  "inference_ms": 696.6,
+  "evidence": {
+    "animals_detected": 50,
+    "kinds_detected": 2,
+    "counts": {
+      "jellyfish": 48,
+      "fish": 2
+    },
+    "ranking": [
+      {
+        "label": "jellyfish",
+        "count": 48
+      },
+      {
+        "label": "fish",
+        "count": 2
+      }
+    ],
+    "duplicates_suppressed": 1,
+    "identity_conflicts": [],
+    "crowding": 0.12,
+    "classes": {
+      "jellyfish": {
+        "count": 48,
+        "confident": 42,
+        "tentative": 6,
+        "max_confidence": 0.8886,
+        "crowding": 0.125,
+        "conflicts": 0
+      },
+      "fish": {
+        "count": 2,
+        "confident": 2,
+        "tentative": 0,
+        "max_confidence": 0.6147,
+        "crowding": 0.0,
+        "conflicts": 0
+      }
+    },
+    "...": "animals and raw detections omitted here"
+  }
 }
 ```
 
-The honest refusal — a school of fish where boxes overlap their neighbours:
+The honest refusal — `samples/tank_02.jpg`, a reef tank full of small fish:
+
+```bash
+curl -s -X POST http://localhost:8000/ask \
+  -F "file=@samples/tank_02.jpg" -F "question=How many fish are in this image?"
+```
 
 ```json
 {
   "question": "How many fish are in this image?",
-  "answer": "I do not have enough information to answer that confidently. 11 of the 14 fish boxes overlap another fish box (crowding 79%), so individual animals in that group cannot be separated and the count may be off in either direction.",
+  "answer": "I do not have enough information to answer that confidently. Only 23 of the 67 fish detections scored at or above 0.45, so most of that count rests on weak evidence.",
   "sufficient_information": false,
-  "routing": {"needs_detection": true, "question_kind": "count", "targets": ["fish"], "...": "..."},
+  "routing": {
+    "needs_detection": true,
+    "question_kind": "count",
+    "targets": [
+      "fish"
+    ],
+    "rationale": "the question asks for a count of fish in the image",
+    "decided_by": "rules"
+  },
   "detector_called": true,
-  "guardrail_reasons": ["11 of the 14 fish boxes overlap another fish box (crowding 79%), so individual animals in that group cannot be separated and the count may be off in either direction"],
-  "answer_source": "template"
+  "guardrail_reasons": [
+    "only 23 of the 67 fish detections scored at or above 0.45, so most of that count rests on weak evidence"
+  ],
+  "answer_source": "template",
+  "evidence": {
+    "counts": {
+      "fish": 67,
+      "shark": 1
+    },
+    "duplicates_suppressed": 29,
+    "crowding": 0.206,
+    "classes": {
+      "fish": {
+        "count": 67,
+        "confident": 23,
+        "tentative": 44,
+        "max_confidence": 0.7946,
+        "crowding": 0.209
+      }
+    },
+    "...": "..."
+  }
 }
 ```
 
