@@ -12,7 +12,8 @@ license: mit
 
 # Aquarium Animal Census API
 
-[![Docker](https://img.shields.io/badge/docker-CPU%20image-0e7c9c)](Dockerfile)
+[![Live demo](https://img.shields.io/badge/live%20demo-Hugging%20Face%20Space-0e7c9c)](https://kanagavel-aquarium-rtdetr.hf.space)
+[![Model](https://img.shields.io/badge/model-Hugging%20Face%20Hub-ffcc4d)](https://huggingface.co/Kanagavel/aquarium-rtdetr)
 [![Weights](https://img.shields.io/badge/weights-best.pt%2066%20MB-2f7a3a)](https://github.com/KanagavelAK/aquarium-rtdetr/releases/download/v1.0/best.pt)
 [![Memo](https://img.shields.io/badge/memo-2%20pages-1f4f8f)](memo/MEMO.pdf)
 ![Tests](https://img.shields.io/badge/tests-20%20passing-brightgreen)
@@ -31,8 +32,9 @@ Reasoning API".
 
 | | |
 |---|---|
-| **Run the API** | `uvicorn app.main:app --port 8000` or `docker run -p 8000:8000 aquarium-rtdetr` — `/detect`, `/ask`, `/health`, Swagger at `/docs`; demo page with `python space_app.py` |
-| **Weights** | [best.pt (GitHub release v1.0)](https://github.com/KanagavelAK/aquarium-rtdetr/releases/download/v1.0/best.pt) — downloaded automatically on first start |
+| **Live demo + API** | https://kanagavel-aquarium-rtdetr.hf.space — page at `/`, API at `/api/detect`, `/api/ask`, `/api/health`, Swagger at `/api/docs` (free CPU Space; first request after idle takes ~1 min) |
+| **Run it yourself** | `uvicorn app.main:app --port 8000` or `docker run -p 8000:8000 aquarium-rtdetr` — `/detect`, `/ask`, `/health`, Swagger at `/docs` |
+| **Weights** | [best.pt (GitHub release v1.0)](https://github.com/KanagavelAK/aquarium-rtdetr/releases/download/v1.0/best.pt) — downloaded automatically on first start; mirrored at [huggingface.co/Kanagavel/aquarium-rtdetr](https://huggingface.co/Kanagavel/aquarium-rtdetr) |
 | **Memo** | [memo/MEMO.pdf](memo/MEMO.pdf) (2 pages) — dataset, split, metrics, five failure cases, reasoning layer |
 | **Training notebook** | [notebooks/kaggle_aquarium_rtdetr.ipynb](notebooks/kaggle_aquarium_rtdetr.ipynb) — one Save & Run All reproduces everything |
 | **Metrics and receipts** | [artifacts/](artifacts/) — `metrics.json`, `training_receipt.json`, `split_stats.json`, `failures/` |
@@ -447,12 +449,14 @@ docker run -p 8000:8000 aquarium-rtdetr
 The image installs CPU-only torch, fetches `best.pt` on first start and has a
 `/health` healthcheck.
 
-**Demo page.** `python space_app.py` serves a Gradio page at
-http://localhost:7860 with the FastAPI routes mounted in the same process.
-The file is also a ready Hugging Face Space entry point (Gradio SDK; on
-Spaces the API is mounted under `/api/` and inference is pinned to CPU), so
-`README.md`'s front matter plus `space_app.py` deploy as-is when a Space is
-available.
+**Hugging Face Space.** The live instance is a free Docker Space on CPU
+basic (2 vCPU, 16 GB): https://kanagavel-aquarium-rtdetr.hf.space.
+`space_app.py` mounts the FastAPI app inside a Gradio app, so one process
+serves the demo page at `/` and the API under `/api/`; the container pulls
+`best.pt` from the GitHub release at start-up. Inference is about 2 s per
+image warm, ~7 s for the first request; free Spaces sleep after 48 h idle
+and wake in about a minute. Locally, `python space_app.py` serves the same
+page at http://localhost:7860 with the API at the root.
 
 **Logging and errors.** Every request gets an `x-request-id` header and one
 log line with method, path, status and latency. Bad uploads, oversized files

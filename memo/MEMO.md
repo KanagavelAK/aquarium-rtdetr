@@ -165,8 +165,9 @@ the facts; with no key, templates do, and `answer_source` says which.
 2.10.0+cu128, Python 3.12, `rtdetr-l.pt` COCO-pretrained, AdamW lr0 1e-4, batch 16 (8 per GPU,
 DDP), 640 px, AMP, RAM cache, seed 0, 80-epoch budget with patience 25 →
 all 80 epochs in 0.50 h (1,805 s) on 2 × T4. `artifacts/training_receipt.json` records
-hardware, arguments and wall clock. Dockerfile included (CPU); `space_app.py` serves the
-demo page and the API in one process (Swagger at `/docs`).
+hardware, arguments and wall clock. Dockerfile included (CPU). **Live API and demo:**
+kanagavel-aquarium-rtdetr.hf.space (Swagger at `/api/docs`); weights also
+at huggingface.co/Kanagavel/aquarium-rtdetr.
 
 ## 7. What changed along the way
 
