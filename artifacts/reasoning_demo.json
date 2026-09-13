@@ -1,0 +1,200 @@
+[
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "How many fish are in this tank?",
+    "kind": "count",
+    "detector_called": true,
+    "answer": "I count 2 fish in this image. (1 overlapping duplicate box collapsed before counting.)",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "jellyfish": 49,
+        "fish": 2
+      },
+      "crowding": 0.098,
+      "duplicates_suppressed": 1,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "What is the most common animal here?",
+    "kind": "ranking",
+    "detector_called": true,
+    "answer": "The most common animal is the jellyfish: 49 of the 51 animals detected, ahead of 2 fish.",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "jellyfish": 49,
+        "fish": 2
+      },
+      "crowding": 0.098,
+      "duplicates_suppressed": 1,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "Are there any sharks?",
+    "kind": "presence",
+    "detector_called": true,
+    "answer": "I do not detect any sharks above the 0.25 threshold.",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "jellyfish": 49,
+        "fish": 2
+      },
+      "crowding": 0.098,
+      "duplicates_suppressed": 1,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "Are there more fish than jellyfish?",
+    "kind": "comparison",
+    "detector_called": true,
+    "answer": "There are more jellyfish than fish: 49 jellyfish versus 2 fish.",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "jellyfish": 49,
+        "fish": 2
+      },
+      "crowding": 0.098,
+      "duplicates_suppressed": 1,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "How many different kinds of animal are there?",
+    "kind": "count_kinds",
+    "detector_called": true,
+    "answer": "I can distinguish 2 kinds of animal here: jellyfish (49) and fish (2).",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "jellyfish": 49,
+        "fish": 2
+      },
+      "crowding": 0.098,
+      "duplicates_suppressed": 1,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "What species of fish is that?",
+    "kind": "out_of_detector_scope",
+    "detector_called": false,
+    "answer": "I cannot answer that. This detector recognises seven kinds of aquarium animal as categories (fish, jellyfish, penguin, puffin, shark, starfish, stingray); it cannot identify species, or judge health, size, age, sex, colour or behaviour."
+  },
+  {
+    "image": "IMG_8594_jpg.jpg",
+    "question": "What is the capital of France?",
+    "kind": "not_about_the_image",
+    "detector_called": false,
+    "answer": "That question is not about the contents of the image, so I did not run the detector."
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "How many fish are in this tank?",
+    "kind": "count",
+    "detector_called": true,
+    "answer": "I do not have enough information to answer that confidently. Only 20 of the 68 fish detections scored at or above 0.45, so most of that count rests on weak evidence.",
+    "refused": true,
+    "evidence": {
+      "counts": {
+        "fish": 68,
+        "stingray": 1
+      },
+      "crowding": 0.275,
+      "duplicates_suppressed": 27,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "What is the most common animal here?",
+    "kind": "ranking",
+    "detector_called": true,
+    "answer": "I do not have enough information to answer that confidently. Only 20 of the 68 fish detections scored at or above 0.45, so most of that count rests on weak evidence.",
+    "refused": true,
+    "evidence": {
+      "counts": {
+        "fish": 68,
+        "stingray": 1
+      },
+      "crowding": 0.275,
+      "duplicates_suppressed": 27,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "Are there any sharks?",
+    "kind": "presence",
+    "detector_called": true,
+    "answer": "I do not detect any sharks above the 0.25 threshold.",
+    "source": "template",
+    "evidence": {
+      "counts": {
+        "fish": 68,
+        "stingray": 1
+      },
+      "crowding": 0.275,
+      "duplicates_suppressed": 27,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "Are there more fish than jellyfish?",
+    "kind": "comparison",
+    "detector_called": true,
+    "answer": "I do not have enough information to answer that confidently. Only 20 of the 68 fish detections scored at or above 0.45, so most of that count rests on weak evidence.",
+    "refused": true,
+    "evidence": {
+      "counts": {
+        "fish": 68,
+        "stingray": 1
+      },
+      "crowding": 0.275,
+      "duplicates_suppressed": 27,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "How many different kinds of animal are there?",
+    "kind": "count_kinds",
+    "detector_called": true,
+    "answer": "I do not have enough information to answer that confidently. Stingrays appear only as detections below 0.45, so it is not clear whether it is really present.",
+    "refused": true,
+    "evidence": {
+      "counts": {
+        "fish": 68,
+        "stingray": 1
+      },
+      "crowding": 0.275,
+      "duplicates_suppressed": 27,
+      "conflicts": 0
+    }
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "What species of fish is that?",
+    "kind": "out_of_detector_scope",
+    "detector_called": false,
+    "answer": "I cannot answer that. This detector recognises seven kinds of aquarium animal as categories (fish, jellyfish, penguin, puffin, shark, starfish, stingray); it cannot identify species, or judge health, size, age, sex, colour or behaviour."
+  },
+  {
+    "image": "IMG_8421_jpg.jpg",
+    "question": "What is the capital of France?",
+    "kind": "not_about_the_image",
+    "detector_called": false,
+    "answer": "That question is not about the contents of the image, so I did not run the detector."
+  }
+]

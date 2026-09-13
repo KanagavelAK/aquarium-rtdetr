@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+runs/
+data/
+artifacts/*.pt
+*.egg-info/
+.pytest_cache/
+.gradio/
+flagged/
+/*.pt

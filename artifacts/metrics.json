@@ -1,0 +1,359 @@
+{
+  "weights": "/kaggle/working/runs/rtdetr_aquarium/weights/best.pt",
+  "classes": [
+    "fish",
+    "jellyfish",
+    "penguin",
+    "puffin",
+    "shark",
+    "starfish",
+    "stingray"
+  ],
+  "validation": {
+    "split": "val",
+    "data": "/kaggle/working/data/aquarium/data.yaml",
+    "mAP50": 0.6053,
+    "mAP50_95": 0.3598,
+    "precision": 0.6497,
+    "recall": 0.6426,
+    "per_class": {
+      "fish": {
+        "precision": 0.6068,
+        "recall": 0.7448,
+        "mAP50": 0.6725,
+        "mAP50_95": 0.3336
+      },
+      "jellyfish": {
+        "precision": 0.8226,
+        "recall": 0.8866,
+        "mAP50": 0.8862,
+        "mAP50_95": 0.5665
+      },
+      "penguin": {
+        "precision": 0.7199,
+        "recall": 0.406,
+        "mAP50": 0.5035,
+        "mAP50_95": 0.2091
+      },
+      "puffin": {
+        "precision": 0.63,
+        "recall": 0.5714,
+        "mAP50": 0.4596,
+        "mAP50_95": 0.277
+      },
+      "shark": {
+        "precision": 0.3557,
+        "recall": 0.6667,
+        "mAP50": 0.5972,
+        "mAP50_95": 0.3641
+      },
+      "starfish": {
+        "precision": 0.9065,
+        "recall": 0.6364,
+        "mAP50": 0.6673,
+        "mAP50_95": 0.4331
+      },
+      "stingray": {
+        "precision": 0.5065,
+        "recall": 0.5862,
+        "mAP50": 0.451,
+        "mAP50_95": 0.3355
+      }
+    },
+    "confusion": {
+      "rows_are_predicted_cols_are_true": {
+        "fish": {
+          "fish": 271,
+          "jellyfish": 1,
+          "penguin": 1,
+          "shark": 4,
+          "stingray": 4,
+          "background": 293
+        },
+        "jellyfish": {
+          "jellyfish": 86,
+          "background": 25
+        },
+        "penguin": {
+          "fish": 1,
+          "penguin": 84,
+          "background": 666
+        },
+        "puffin": {
+          "puffin": 21,
+          "starfish": 1,
+          "background": 20
+        },
+        "shark": {
+          "fish": 6,
+          "shark": 26,
+          "starfish": 1,
+          "stingray": 4,
+          "background": 87
+        },
+        "starfish": {
+          "shark": 1,
+          "starfish": 14,
+          "stingray": 1,
+          "background": 25
+        },
+        "stingray": {
+          "fish": 3,
+          "shark": 1,
+          "starfish": 1,
+          "stingray": 17,
+          "background": 29
+        },
+        "background": {
+          "fish": 56,
+          "jellyfish": 10,
+          "penguin": 10,
+          "puffin": 14,
+          "shark": 4,
+          "starfish": 5,
+          "stingray": 3
+        }
+      },
+      "off_diagonal_confusions": [
+        {
+          "true": "fish",
+          "predicted": "shark",
+          "count": 6
+        },
+        {
+          "true": "shark",
+          "predicted": "fish",
+          "count": 4
+        },
+        {
+          "true": "stingray",
+          "predicted": "fish",
+          "count": 4
+        },
+        {
+          "true": "stingray",
+          "predicted": "shark",
+          "count": 4
+        },
+        {
+          "true": "fish",
+          "predicted": "stingray",
+          "count": 3
+        },
+        {
+          "true": "jellyfish",
+          "predicted": "fish",
+          "count": 1
+        },
+        {
+          "true": "penguin",
+          "predicted": "fish",
+          "count": 1
+        },
+        {
+          "true": "fish",
+          "predicted": "penguin",
+          "count": 1
+        },
+        {
+          "true": "starfish",
+          "predicted": "puffin",
+          "count": 1
+        },
+        {
+          "true": "starfish",
+          "predicted": "shark",
+          "count": 1
+        },
+        {
+          "true": "shark",
+          "predicted": "starfish",
+          "count": 1
+        },
+        {
+          "true": "stingray",
+          "predicted": "starfish",
+          "count": 1
+        },
+        {
+          "true": "shark",
+          "predicted": "stingray",
+          "count": 1
+        },
+        {
+          "true": "starfish",
+          "predicted": "stingray",
+          "count": 1
+        }
+      ]
+    },
+    "speed_ms_per_image": {
+      "preprocess": 2.71,
+      "inference": 39.32,
+      "loss": 0.0,
+      "postprocess": 0.23
+    }
+  },
+  "test": {
+    "split": "test",
+    "data": "/kaggle/working/data/aquarium/data.yaml",
+    "mAP50": 0.5916,
+    "mAP50_95": 0.323,
+    "precision": 0.6353,
+    "recall": 0.6083,
+    "per_class": {
+      "fish": {
+        "precision": 0.6111,
+        "recall": 0.6836,
+        "mAP50": 0.6567,
+        "mAP50_95": 0.3538
+      },
+      "jellyfish": {
+        "precision": 0.794,
+        "recall": 0.8077,
+        "mAP50": 0.817,
+        "mAP50_95": 0.4931
+      },
+      "penguin": {
+        "precision": 0.6113,
+        "recall": 0.5844,
+        "mAP50": 0.6262,
+        "mAP50_95": 0.2348
+      },
+      "puffin": {
+        "precision": 0.4887,
+        "recall": 0.6047,
+        "mAP50": 0.5017,
+        "mAP50_95": 0.2248
+      },
+      "shark": {
+        "precision": 0.6097,
+        "recall": 0.6893,
+        "mAP50": 0.641,
+        "mAP50_95": 0.3287
+      },
+      "starfish": {
+        "precision": 0.8841,
+        "recall": 0.4251,
+        "mAP50": 0.4542,
+        "mAP50_95": 0.3381
+      },
+      "stingray": {
+        "precision": 0.4485,
+        "recall": 0.4634,
+        "mAP50": 0.4447,
+        "mAP50_95": 0.2875
+      }
+    },
+    "confusion": {
+      "rows_are_predicted_cols_are_true": {
+        "fish": {
+          "fish": 283,
+          "jellyfish": 1,
+          "shark": 7,
+          "background": 363
+        },
+        "jellyfish": {
+          "fish": 1,
+          "jellyfish": 139,
+          "stingray": 7,
+          "background": 30
+        },
+        "penguin": {
+          "penguin": 72,
+          "background": 592
+        },
+        "puffin": {
+          "puffin": 29,
+          "starfish": 1,
+          "background": 39
+        },
+        "shark": {
+          "fish": 2,
+          "shark": 53,
+          "stingray": 2,
+          "background": 66
+        },
+        "starfish": {
+          "starfish": 8,
+          "stingray": 1,
+          "background": 6
+        },
+        "stingray": {
+          "shark": 3,
+          "starfish": 1,
+          "stingray": 24,
+          "background": 36
+        },
+        "background": {
+          "fish": 87,
+          "jellyfish": 27,
+          "penguin": 5,
+          "puffin": 14,
+          "shark": 5,
+          "starfish": 8,
+          "stingray": 7
+        }
+      },
+      "off_diagonal_confusions": [
+        {
+          "true": "shark",
+          "predicted": "fish",
+          "count": 7
+        },
+        {
+          "true": "stingray",
+          "predicted": "jellyfish",
+          "count": 7
+        },
+        {
+          "true": "shark",
+          "predicted": "stingray",
+          "count": 3
+        },
+        {
+          "true": "fish",
+          "predicted": "shark",
+          "count": 2
+        },
+        {
+          "true": "stingray",
+          "predicted": "shark",
+          "count": 2
+        },
+        {
+          "true": "jellyfish",
+          "predicted": "fish",
+          "count": 1
+        },
+        {
+          "true": "fish",
+          "predicted": "jellyfish",
+          "count": 1
+        },
+        {
+          "true": "starfish",
+          "predicted": "puffin",
+          "count": 1
+        },
+        {
+          "true": "stingray",
+          "predicted": "starfish",
+          "count": 1
+        },
+        {
+          "true": "starfish",
+          "predicted": "stingray",
+          "count": 1
+        }
+      ]
+    },
+    "speed_ms_per_image": {
+      "preprocess": 2.67,
+      "inference": 39.34,
+      "loss": 0.0,
+      "postprocess": 0.24
+    }
+  },
+  "val_minus_test_mAP50": 0.0137
+}

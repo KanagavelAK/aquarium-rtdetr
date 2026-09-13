@@ -1,0 +1,27 @@
+# Core
+ultralytics==8.3.40
+torch>=2.1
+torchvision>=0.16
+opencv-python-headless==4.10.0.84
+numpy>=1.26,<3
+pillow>=10.0
+pyyaml>=6.0
+kagglehub>=0.3      # dataset download in the notebook; optional checkpoint source
+
+# API
+fastapi>=0.115
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic>=2.9
+
+# Reasoning layer (optional at runtime; the API falls back to templates)
+anthropic>=1.0
+
+# Hugging Face Space demo page (space_app.py); not needed for the API alone
+gradio>=5.0
+
+# Dev
+pytest==8.3.4
+httpx==0.27.2
+markdown>=3.5      # memo/build_pdf.py
+pypdf>=4.0         # memo/build_pdf.py page count

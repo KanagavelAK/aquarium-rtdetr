@@ -1,0 +1,75 @@
+{
+  "source": "kaggle:slavkoprytula/aquarium-data-cots (Roboflow Aquarium Combined, CC BY 4.0)",
+  "classes": [
+    "fish",
+    "jellyfish",
+    "penguin",
+    "puffin",
+    "shark",
+    "starfish",
+    "stingray"
+  ],
+  "images_total": 638,
+  "images_per_split": {
+    "train": 447,
+    "val": 93,
+    "test": 98
+  },
+  "instances_per_split": {
+    "train": {
+      "puffin": 206,
+      "penguin": 344,
+      "fish": 1958,
+      "starfish": 76,
+      "shark": 248,
+      "jellyfish": 430,
+      "stingray": 114
+    },
+    "val": {
+      "penguin": 95,
+      "fish": 337,
+      "shark": 36,
+      "jellyfish": 97,
+      "starfish": 22,
+      "stingray": 29,
+      "puffin": 35
+    },
+    "test": {
+      "fish": 373,
+      "shark": 68,
+      "puffin": 43,
+      "starfish": 18,
+      "stingray": 41,
+      "penguin": 77,
+      "jellyfish": 167
+    }
+  },
+  "instances_total": {
+    "puffin": 284,
+    "penguin": 516,
+    "fish": 2668,
+    "starfish": 116,
+    "shark": 352,
+    "jellyfish": 694,
+    "stingray": 184
+  },
+  "background_only_images": 1,
+  "byte_identical_duplicates_removed": 0,
+  "labels_dropped": {
+    "degenerate box": 3
+  },
+  "source_split_to_our_split": {
+    "test->train": 35,
+    "test->val": 15,
+    "test->test": 13,
+    "train->train": 325,
+    "train->test": 64,
+    "train->val": 59,
+    "valid->train": 87,
+    "valid->test": 21,
+    "valid->val": 19
+  },
+  "split_method": "md5(file stem without Roboflow's .rf.<hash> suffix) -> deterministic bucket, image level",
+  "val_frac": 0.15,
+  "test_frac": 0.15
+}
