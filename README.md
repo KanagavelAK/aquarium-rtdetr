@@ -12,7 +12,7 @@ license: mit
 
 # Aquarium Animal Census API
 
-[![Live demo](https://img.shields.io/badge/live%20demo-Hugging%20Face%20Space-0e7c9c)](https://kanagavel-aquarium-rtdetr.hf.space)
+[![Docker](https://img.shields.io/badge/docker-CPU%20image-0e7c9c)](Dockerfile)
 [![Weights](https://img.shields.io/badge/weights-best.pt%2066%20MB-2f7a3a)](https://github.com/KanagavelAK/aquarium-rtdetr/releases/download/v1.0/best.pt)
 [![Memo](https://img.shields.io/badge/memo-2%20pages-1f4f8f)](memo/MEMO.pdf)
 ![Tests](https://img.shields.io/badge/tests-20%20passing-brightgreen)
@@ -31,7 +31,7 @@ Reasoning API".
 
 | | |
 |---|---|
-| **Live demo + API** | https://kanagavel-aquarium-rtdetr.hf.space — page at `/`, API at `/api/detect`, `/api/ask`, `/api/health`, Swagger at `/api/docs` |
+| **Run the API** | `uvicorn app.main:app --port 8000` or `docker run -p 8000:8000 aquarium-rtdetr` — `/detect`, `/ask`, `/health`, Swagger at `/docs`; demo page with `python space_app.py` |
 | **Weights** | [best.pt (GitHub release v1.0)](https://github.com/KanagavelAK/aquarium-rtdetr/releases/download/v1.0/best.pt) — downloaded automatically on first start |
 | **Memo** | [memo/MEMO.pdf](memo/MEMO.pdf) (2 pages) — dataset, split, metrics, five failure cases, reasoning layer |
 | **Training notebook** | [notebooks/kaggle_aquarium_rtdetr.ipynb](notebooks/kaggle_aquarium_rtdetr.ipynb) — one Save & Run All reproduces everything |
@@ -447,13 +447,12 @@ docker run -p 8000:8000 aquarium-rtdetr
 The image installs CPU-only torch, fetches `best.pt` on first start and has a
 `/health` healthcheck.
 
-**Hugging Face Space.** The live instance is a free Space (Gradio SDK,
-ZeroGPU tier). `space_app.py` mounts the FastAPI app inside a Gradio app, so
-one process serves the demo page at `/` and the API under `/api/`. Everything
-runs on CPU: ZeroGPU requires at least one `@spaces.GPU` function to start,
-so the file carries a placeholder that is never called, and no request
-reserves a GPU or consumes GPU quota. Free Spaces sleep after 48 h idle and
-wake in about a minute on the next request.
+**Demo page.** `python space_app.py` serves a Gradio page at
+http://localhost:7860 with the FastAPI routes mounted in the same process.
+The file is also a ready Hugging Face Space entry point (Gradio SDK; on
+Spaces the API is mounted under `/api/` and inference is pinned to CPU), so
+`README.md`'s front matter plus `space_app.py` deploy as-is when a Space is
+available.
 
 **Logging and errors.** Every request gets an `x-request-id` header and one
 log line with method, path, status and latency. Bad uploads, oversized files
